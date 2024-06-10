@@ -1,0 +1,121 @@
+extends ../../layouts/default.pug
+include ../../mixins/filter-status.pug
+
+block main
+
+    h1 Danh sách sản phẩm
+
+    .card.mb-3
+        .card-header Bộ lọc 
+        .card-body
+            +filter-status(filterStatus)
+            //- each item in filterStatus
+            //-     button(
+            //-         class=`btn btn-sm ml-1 btn-outline-success ${item.class}`
+            //-         button-status=item.status
+            //-      ) #{item.name}
+
+
+
+            //- button(
+            //-     class="btn btn-sm ml-1 btn-outline-success"
+            //-     button-status="active"
+            //- ) Hoạt động
+            //- button(
+            //-     class="btn btn-sm ml-1 btn-outline-success "
+            //-     button-status="inactive"
+            //- ) Dừng hoạt động
+
+    .card.mb-3
+        .card-header Danh sách
+        .card-body 
+            .row
+                .col-4
+                    a(
+                        href="product/create"
+                        class="btn btn-success"
+                    ) + Thêm mới
+
+        table.table.table-hover.table-sm
+            thead
+                tr
+                    th STT
+                    th Hình ảnh
+                    th Tiêu đề
+                    th Giá
+                    th Trạng thái
+                    th Hành động
+
+            tbody
+                each item,index in product
+                    tr 
+                        td #{index+1}
+                        td
+                            img(
+                                src=item.thumbnail
+                                alt=item.title
+                                width="100px"
+                                height="auto"
+                            )
+                        td #{item.title}
+                        td #{item.price}$
+                        td
+                            if(item.status == "active")
+                                a( 
+                                  
+                                    href="javascript:;" 
+                                    data-status=item.status
+                                    data-id = item.id
+                                    button-change-status
+                                    class="badge text-bg-success") Hoạt động
+                            else 
+                                a(
+                                    href="javascript:;" 
+                                    data-status=item.status
+                                    data-id = item.id
+                                    button-change-status
+                                    class="badge bg-danger") Dừng Hoạt động
+                        td 
+                            a(  
+                                href=`product/edit/${item.id}`
+                                class="btn btn-warning btn-sm") Sửa
+                            button(
+                                class="btn btn-danger btn-sm ml-1"
+                                button-delete
+                                data-id = item.id
+                                ) Xóa
+                    
+            //- tr
+            //-     td 2
+            //-     td
+            //-      img(
+            //-         src="https://nhaxinh.com/wp-content/uploads/2023/08/Ban-lam-viec-Fence-129-70-30-600x400.jpg"
+            //-         alt="Sản phẩm 1"
+            //-         width="100px"
+            //-         height="auto"
+            //-     )
+            //-     td Sản phẩm 2
+            //-     td 150$
+            //-     td
+            //-         a(href="#" class="badge bg-danger") Dừng Hoạt động
+            //-     td 
+            //-         button(class="btn btn-warning btn-sm") Sửa
+            //-         button(class="btn btn-danger btn-sm ml-1") Xóa
+
+
+        form(action="",
+             method="POST",
+             id="form-change-status",
+             data-path="/admin/product/change-status"
+             ) 
+             
+        form(action="",
+             method="POST",
+             id="form-delete-item",
+             data-path="/admin/product/delete"
+             ) 
+
+
+        script(src="/admin/js/product.js") 
+               
+                    
