@@ -11,7 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.7",
     "express": "^4.19.2",
+    "md5": "^2.3.0",
     "method-override": "^3.0.0",
     "mongoose": "^8.4.1",
     "mongoose-slug-updater": "^3.3.0",

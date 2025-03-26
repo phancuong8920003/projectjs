@@ -10,6 +10,6 @@ module.exports.category =async (req , res,next) =>{
 
     const newProductCategory = createTreeHelper.tree(productsCategory);
     res.locals.layoutProductCategory=newProductCategory ;
-    console.log("Luôn chạy qua đây");
+    // console.log("Luôn chạy qua đây");
     next();
 }

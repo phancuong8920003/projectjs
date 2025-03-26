@@ -87,7 +87,7 @@ module.exports.edit = async(req, res) => {
   };
 
 
-  // [PATCH] /admin/product-category/edit/:id
+//   [PATCH] /admin/product-category/edit/:id
 module.exports.editPatch = async(req, res) => {
 
     const id = req.params.id;

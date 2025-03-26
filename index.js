@@ -2,10 +2,12 @@ const express = require("express");
 const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
 const multer = require("multer");
+const cookieParser = require('cookie-parser');
 const app = express();
 const port = 3000;
 
 app.use(methodOverride("_method"));
+app.use(cookieParser());
 
 app.use(bodyParser.urlencoded({extended: false}));
 const database = require("./config/database.js");
